@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل الهاتف</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>دليل الهاتف</h1>
+    
+    <!-- شريط البحث -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="بحث..." />
+    </div>
+
+    <!-- أزرار التحكم -->
+    <div class="controls-section">
+      <button onclick="openAddModal()">إضافة جهة اتصال</button>
+      <button onclick="exportToExcel()">تصدير إلى Excel</button>
+      <label class="import-button">
+        استيراد من Excel
+        <input type="file" id="importFile" style="display: none;" onchange="importFromExcel(event)" />
+      </label>
+    </div>
+
+    <!-- قائمة جهات الاتصال -->
+    <div class="contacts-section">
+      <table>
+        <thead>
+          <tr>
+            <th>الاسم</th>
+            <th>رقم الهاتف</th>
+            <th>العنوان</th>
+            <th>البريد الإلكتروني</th>
+            <th>إجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="contactsList"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal لإضافة جهة اتصال -->
+  <div id="addModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAddModal()">&times;</span>
+      <h2>إضافة جهة اتصال</h2>
+      <form id="addContactForm">
+        <input type="text" id="name" placeholder="الاسم" required />
+        <input type="text" id="phone" placeholder="رقم الهاتف" required />
+        <input type="text" id="address" placeholder="العنوان" />
+        <input type="email" id="email" placeholder="البريد الإلكتروني" />
+        <button type="submit">حفظ</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal لتعديل جهة اتصال -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeEditModal()">&times;</span>
+      <h2>تعديل جهة اتصال</h2>
+      <form id="editContactForm">
+        <input type="text" id="editName" placeholder="الاسم" required readonly />
+        <input type="text" id="editPhone" placeholder="رقم الهاتف" required />
+        <input type="text" id="editAddress" placeholder="العنوان" />
+        <input type="email" id="editEmail" placeholder="البريد الإلكتروني" />
+        <button type="submit">حفظ التغييرات</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
